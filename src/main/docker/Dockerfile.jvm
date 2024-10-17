@@ -95,3 +95,16 @@ ENV JAVA_APP_JAR="/deployments/quarkus-run.jar"
 
 ENTRYPOINT [ "/opt/jboss/container/java/run/run-java.sh" ]
 
+# Base image
+FROM postgres:14
+
+# Set environment variables
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DB=postgres
+
+# Expose the PostgreSQL port
+EXPOSE 5432
+
+# Run PostgreSQL
+CMD ["postgres"]
