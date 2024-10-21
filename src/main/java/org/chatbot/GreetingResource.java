@@ -91,11 +91,11 @@ public class GreetingResource {
 
     // Helper methods to load OpenNLP models with proper exception handling
     private TokenizerME loadTokenizerModel() {
-        return loadModel("/opennlp-en-ud-ewt-tokens-1.0-1.9.3.bin", TokenizerModel::new, TokenizerME::new);
+        return loadModel("/opennlp-en-ud-ewt-tokens.bin", TokenizerModel::new, TokenizerME::new);
     }
 
     private POSTaggerME loadPOSTaggerModel() {
-        return loadModel("/opennlp-en-ud-ewt-pos-1.0-1.9.3.bin", POSModel::new, POSTaggerME::new);
+        return loadModel("/opennlp-en-ud-ewt-pos.bin", POSModel::new, POSTaggerME::new);
     }
 
     private NameFinderME loadNameFinderModel() {
@@ -103,7 +103,7 @@ public class GreetingResource {
     }
 
     private SentenceDetectorME loadSentenceDetectorModel() {
-        return loadModel("/opennlp-en-ud-ewt-sentence-1.0-1.9.3.bin", SentenceModel::new, SentenceDetectorME::new);
+        return loadModel("/opennlp-en-ud-ewt-sentence.bin", SentenceModel::new, SentenceDetectorME::new);
     }
 
     // Generic method to load an OpenNLP model and handle exceptions
