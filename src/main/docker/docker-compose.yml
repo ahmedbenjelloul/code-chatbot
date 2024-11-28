@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: chatbot_db
+    environment:
+      POSTGRES_USER: chatbot_user
+      POSTGRES_PASSWORD: chatbot_pass
+      POSTGRES_DB: chatbot_knowledge
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ../../../  # Dossier contenant le Dockerfile du backend
+    container_name: chatbot_backend
+    environment:
+      - QUARKUS_DATASOURCE_URL=jdbc:postgresql://db:5432/chatbot_knowledge
+      - QUARKUS_DATASOURCE_USERNAME=chatbot_user
+      - QUARKUS_DATASOURCE_PASSWORD=chatbot_pass
+    ports:
+      - "8080:8080"  # Le backend est accessible sur localhost:8080
+    depends_on:
+      - db  # Assure que la base de données est démarrée avant le backend
+
+volumes:
+  db_data:
